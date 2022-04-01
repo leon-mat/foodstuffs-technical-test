@@ -7,6 +7,6 @@ final class OpenfoodfactUrlFactory
 
     public static function generateUrl(): string
     {
-        return '';
+        return 'https://fr.openfoodfacts.org/cgi/search.pl?action=process&json=1';
     }
 }
