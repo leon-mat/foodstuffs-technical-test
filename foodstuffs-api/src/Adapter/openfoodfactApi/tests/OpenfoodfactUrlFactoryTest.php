@@ -22,7 +22,7 @@ final class OpenfoodfactUrlFactoryTest extends TestCase
     {
         $ean = 'myeancode';
 
-        $this->assertEquals("https://fr.openfoodfacts.org/cgi/search.pl?action=process&code=myeancode&json=1", OpenfoodfactUrlFactory::generateUrl($ean));
+        $this->assertEquals("https://fr.openfoodfacts.org/cgi/search.pl?action=process&json=1&code=myeancode", OpenfoodfactUrlFactory::generateUrl($ean));
     }
 
     /**
@@ -32,6 +32,6 @@ final class OpenfoodfactUrlFactoryTest extends TestCase
     {
         $allergens = ['firstAllergen', 'secondAllergen', 'thirdAllergen'];
 
-        $this->assertEquals("https://fr.openfoodfacts.org/cgi/search.pl?action=process&json=1&tagtype_0=allergens&tag_contains_0=contains&tag_0=firstAllergen&tagtype_1=allergens&tag_contains_1=contains&tag_1=secondAllergen&&tagtype_2=allergens&tag_contains_2=contains&tag_2=thirdAllergen", OpenfoodfactUrlFactory::generateUrl('', $allergens));
+        $this->assertEquals("https://fr.openfoodfacts.org/cgi/search.pl?action=process&json=1&tagtype_0=allergens&tag_contains_0=contains&tag_0=firstAllergen&tagtype_1=allergens&tag_contains_1=contains&tag_1=secondAllergen&tagtype_2=allergens&tag_contains_2=contains&tag_2=thirdAllergen", OpenfoodfactUrlFactory::generateUrl('', $allergens));
     }
 }
