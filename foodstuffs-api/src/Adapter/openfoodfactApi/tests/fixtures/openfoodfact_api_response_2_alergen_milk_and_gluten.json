@@ -1,0 +1,27 @@
+{
+    "count": 84930,
+    "page": 1,
+    "page_count": 3,
+    "page_size": 3,
+    "products": [
+        {
+            "brands": "LU,MONDELEZ",
+            "code": "7622210449283",
+            "nutrition_grades": "d",
+            "product_name": "Prince Chocolat"
+        },
+        {
+            "brands": "Ferrero",
+            "code": "3017620425035",
+            "nutrition_grades": "e",
+            "product_name": "Nutella pâte à tartiner aux noisettes et au cacao 1kg"
+        },
+        {
+            "brands": "Gerblé",
+            "code": "3175680011480",
+            "nutrition_grades": "b",
+            "product_name": "Sésame"
+        }
+    ],
+    "skip": 0
+}

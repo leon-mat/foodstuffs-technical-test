@@ -25,6 +25,24 @@ final class FoodStuffsFromOpenfoodfactApiTest extends TestCase
     }
 
     /**
+     * @test
+     */
+    public function it_can_search_foodstuffs_by_allergens()
+    {
+        $allergens = ['milk', 'gluten'];
+        $repository = new FoodStuffsFromOpenfoodfactApi($this->createHttpClientMock(OpenfoodfactUrlFactory::generateUrl('', $allergens), '/fixtures/openfoodfact_api_response_2_alergen_milk_and_gluten.json'));
+
+        $this->assertEquals(
+            [
+                new FoodStuff('7622210449283'),
+                new FoodStuff('3017620425035'),
+                new FoodStuff('3175680011480')
+            ],
+            $repository->search('', $allergens, '', '', '')
+        );
+    }
+
+    /**
      * @return HttpClientInterface|MockObject
      */
     private function createHttpClientMock(string $url, string $pathToFixtureReponse): HttpClientInterface
