@@ -12,7 +12,7 @@ final class FoodStuffsFromOpenfoodfactApiTest extends TestCase
     /**
      * @test
      */
-    public function it_can_search_foodstuffs_by_ean()
+    public function it_can_search_a_foodstuff_by_ean()
     {
         $ean = '3057640257773';
 
@@ -24,28 +24,18 @@ final class FoodStuffsFromOpenfoodfactApiTest extends TestCase
     /**
      * @test
      */
-    public function it_can_search_foodstuffs_by_allergens()
-    {
-        $allergens = ['milk', 'gluten'];
-
-        $repository = new FoodStuffsFromOpenfoodfactApi(HttpClient::create());
-        $foodstuffs = $repository->search('', $allergens, '', '', '');
-
-        $this->assertContainsOnlyInstancesOf(FoodStuff::class, $foodstuffs);
-        $this->assertGreaterThan(2, $foodstuffs);
-    }
-
-    /**
-     * @test
-     */
-    public function it_can_search_foodstuffs_by_a_brand()
+    public function it_can_search_foodstuffs_by_brand_allergens_and_category()
     {
         $brand = 'Danone';
+        $allergens = ['milk', 'gluten'];
+        $category = 'milk';
 
         $repository = new FoodStuffsFromOpenfoodfactApi(HttpClient::create());
-        $foodstuffs = $repository->search('', [], '', $brand, '');
+        $foodstuffs = $repository->search('', $allergens, '', $brand, $category);
 
         $this->assertContainsOnlyInstancesOf(FoodStuff::class, $foodstuffs);
         $this->assertGreaterThan(2, $foodstuffs);
     }
+
+    // @todo: add search a foodstuff by her name (not yet found in openfoodfact api)
 }
