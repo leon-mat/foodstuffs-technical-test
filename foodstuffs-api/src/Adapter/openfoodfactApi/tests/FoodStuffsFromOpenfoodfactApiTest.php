@@ -17,8 +17,11 @@ final class FoodStuffsFromOpenfoodfactApiTest extends TestCase
         $ean = '3057640257773';
 
         $repository = new FoodStuffsFromOpenfoodfactApi(HttpClient::create());
+        $foodstuffs = $repository->search('', [], $ean, '', '');
 
-        $this->assertEquals([new FoodStuff('3057640257773')], $repository->search('', [], $ean, '', ''));
+        $this->assertCount(1 ,$foodstuffs);
+        $this->assertEquals('3057640257773' , $foodstuffs[0]->getEan());
+        $this->assertEquals('Volvic' , $foodstuffs[0]->getName());
     }
 
     /**

@@ -2,7 +2,7 @@
 
 namespace App\Domain\foodstuffs;
 
-interface FoodstuffsRepository
+interface FoodStuffsRepository
 {
     /**
      * @param string   $name

@@ -15,6 +15,6 @@ final class FoodstuffTest extends TestCase
     {
         $this->expectException(InvalidFoodstuffEANException::class);
 
-        new FoodStuff('');
+        new FoodStuff('', 'Coca', '', '', '', 'E');
     }
 }

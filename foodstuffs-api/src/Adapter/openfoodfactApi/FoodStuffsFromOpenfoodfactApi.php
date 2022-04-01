@@ -3,10 +3,10 @@
 namespace App\Adapter\openfoodfactApi;
 
 use App\Domain\foodstuffs\FoodStuff;
-use App\Domain\foodstuffs\FoodstuffsRepository;
+use App\Domain\foodstuffs\FoodStuffsRepository;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-final class FoodStuffsFromOpenfoodfactApi implements FoodstuffsRepository
+final class FoodStuffsFromOpenfoodfactApi implements FoodStuffsRepository
 {
     /**
      * @var HttpClientInterface
@@ -35,6 +35,13 @@ final class FoodStuffsFromOpenfoodfactApi implements FoodstuffsRepository
 
     private function transformToFoodStuff(array $product)
     {
-        return new FoodStuff($product['code']);
+        return new FoodStuff(
+            $product['code'],
+            $product['product_name_fr'],
+            $product['brands'],
+            $product['ingredients_text_fr'],
+            $product['allergens_from_ingredients'],
+            $product['nutriscore_grade']
+        );
     }
 }

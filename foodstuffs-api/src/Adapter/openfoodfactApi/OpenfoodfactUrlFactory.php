@@ -26,6 +26,8 @@ final class OpenfoodfactUrlFactory
             $i++;
         }
 
+        $url .= '&fields=code,product_name_fr,brands,ingredients_text_fr,allergens_from_ingredients,nutriscore_grade';
+
         return $url;
     }
 }
