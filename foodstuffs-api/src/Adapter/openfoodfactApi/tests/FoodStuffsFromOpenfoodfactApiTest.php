@@ -3,6 +3,7 @@
 namespace App\Adapter\openfoodfactApi\tests;
 
 use App\Adapter\openfoodfactApi\FoodStuffsFromOpenfoodfactApi;
+use App\Adapter\openfoodfactApi\OpenfoodfactUrlFactory;
 use App\Domain\foodstuffs\FoodStuff;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -16,9 +17,11 @@ final class FoodStuffsFromOpenfoodfactApiTest extends TestCase
      */
     public function it_can_search_foodstuffs_by_ean()
     {
-        $repository = new FoodStuffsFromOpenfoodfactApi($this->createHttpClientMock('https://fr.openfoodfacts.org/cgi/search.pl?code=3057640257773&json=1', '/fixtures/openfoodfact_api_response_1_volvic.json'));
+        $ean = '3057640257773';
 
-        $this->assertEquals([new FoodStuff('3057640257773')], $repository->search('', [], '3057640257773', '', ''));
+        $repository = new FoodStuffsFromOpenfoodfactApi($this->createHttpClientMock(OpenfoodfactUrlFactory::generateUrl($ean), '/fixtures/openfoodfact_api_response_1_ean_volvic.json'));
+
+        $this->assertEquals([new FoodStuff('3057640257773')], $repository->search('', [], $ean, '', ''));
     }
 
     /**

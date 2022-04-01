@@ -18,11 +18,11 @@ final class FoodStuffsFromOpenfoodfactApi implements FoodstuffsRepository
         $this->httpClient = $httpClient;
     }
 
-    public function search(string $name, array $criteria, string $ean, string $brand, string $category): array
+    public function search(string $name, array $allergens, string $ean, string $brand, string $category): array
     {
         $foodStuffs = [];
 
-        $url = sprintf("https://fr.openfoodfacts.org/cgi/search.pl?code=%s&json=1", $ean);
+        $url = OpenfoodfactUrlFactory::generateUrl($ean, $allergens);
         $response = $this->httpClient->request('GET', $url);
 
         $productsResponse = (\json_decode($response->getContent(), true))['products'];
