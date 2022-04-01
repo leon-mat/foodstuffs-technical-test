@@ -5,7 +5,7 @@ namespace App\Adapter\openfoodfactApi;
 final class OpenfoodfactUrlFactory
 {
 
-    public static function generateUrl(string $ean = '', array $allergens = []): string
+    public static function generateUrl(string $ean = '', array $allergens = [], string $brand = ''): string
     {
         $url = 'https://fr.openfoodfacts.org/cgi/search.pl?action=process&json=1';
         $i = 0;

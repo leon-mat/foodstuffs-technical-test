@@ -34,4 +34,12 @@ final class OpenfoodfactUrlFactoryTest extends TestCase
 
         $this->assertEquals("https://fr.openfoodfacts.org/cgi/search.pl?action=process&json=1&tagtype_0=allergens&tag_contains_0=contains&tag_0=firstAllergen&tagtype_1=allergens&tag_contains_1=contains&tag_1=secondAllergen&tagtype_2=allergens&tag_contains_2=contains&tag_2=thirdAllergen", OpenfoodfactUrlFactory::generateUrl('', $allergens));
     }
+
+    /**
+     * @test
+     */
+    public function it_can_generate_an_openfoodfact_url_for_search_brand()
+    {
+        $this->assertEquals("https://fr.openfoodfacts.org/cgi/search.pl?action=process&json=1&tagtype_0=brand&tag_contains_0=contains&tag_0=danone", OpenfoodfactUrlFactory::generateUrl('', [], 'danone'));
+    }
 }
