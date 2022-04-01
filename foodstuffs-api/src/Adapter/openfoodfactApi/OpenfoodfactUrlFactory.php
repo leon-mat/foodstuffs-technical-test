@@ -5,7 +5,7 @@ namespace App\Adapter\openfoodfactApi;
 final class OpenfoodfactUrlFactory
 {
 
-    public static function generateUrl(string $ean = '', array $allergens = [], string $brand = ''): string
+    public static function generateUrl(string $ean = '', array $allergens = [], string $brand = '', string $category = ''): string
     {
         $url = 'https://fr.openfoodfacts.org/cgi/search.pl?action=process&json=1';
         $i = 0;
@@ -18,6 +18,10 @@ final class OpenfoodfactUrlFactory
                 $url .= sprintf("&tagtype_%u=allergens&tag_contains_%u=contains&tag_%u=%s", $i, $i, $i, $allergen);
                 $i++;
             }
+        }
+        if ($brand) {
+            $url .= sprintf("&tagtype_%u=brands&tag_contains_%u=contains&tag_%u=%s", $i, $i, $i, $brand);
+            $i++;
         }
 
         return $url;
