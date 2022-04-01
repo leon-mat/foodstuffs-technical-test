@@ -27,8 +27,25 @@ final class FoodStuffsFromOpenfoodfactApiTest extends TestCase
     public function it_can_search_foodstuffs_by_allergens()
     {
         $allergens = ['milk', 'gluten'];
-        $repository = new FoodStuffsFromOpenfoodfactApi(HttpClient::create());
 
-        $this->assertCount(24, $repository->search('', $allergens, '', '', ''));
+        $repository = new FoodStuffsFromOpenfoodfactApi(HttpClient::create());
+        $foodstuffs = $repository->search('', $allergens, '', '', '');
+
+        $this->assertContainsOnlyInstancesOf(FoodStuff::class, $foodstuffs);
+        $this->assertGreaterThan(2, $foodstuffs);
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_search_foodstuffs_by_a_brand()
+    {
+        $brand = 'Danone';
+
+        $repository = new FoodStuffsFromOpenfoodfactApi(HttpClient::create());
+        $foodstuffs = $repository->search('', [], '', $brand, '');
+
+        $this->assertContainsOnlyInstancesOf(FoodStuff::class, $foodstuffs);
+        $this->assertGreaterThan(2, $foodstuffs);
     }
 }
