@@ -13,14 +13,16 @@ final class OpenfoodfactUrlFactory
         if ($ean) {
             $url .= '&code='.$ean;
         }
-        if (!empty($allergens)) {
-            foreach ($allergens as $allergen) {
-                $url .= sprintf("&tagtype_%u=allergens&tag_contains_%u=contains&tag_%u=%s", $i, $i, $i, $allergen);
-                $i++;
-            }
+        foreach ($allergens as $allergen) {
+            $url .= sprintf("&tagtype_%u=allergens&tag_contains_%u=contains&tag_%u=%s", $i, $i, $i, $allergen);
+            $i++;
         }
         if ($brand) {
             $url .= sprintf("&tagtype_%u=brands&tag_contains_%u=contains&tag_%u=%s", $i, $i, $i, $brand);
+            $i++;
+        }
+        if ($category) {
+            $url .= sprintf("&tagtype_%u=categories&tag_contains_%u=contains&tag_%u=%s", $i, $i, $i, $category);
             $i++;
         }
 
