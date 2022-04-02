@@ -21,7 +21,8 @@ final class ListFoodStuffsControllerTest extends WebTestCase
 
         $content = $client->getResponse()->getContent();
 
-        $this->assertJson(
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertJsonStringEqualsJsonString(
             '
             [
                 {"ean":"7500000000125"},
