@@ -26,7 +26,7 @@ class ListFoodStuffsController extends AbstractController
         $this->validateRequest($request);
         $foodstuffs = $this->foodStuffsRepository->search(
             $request->get('name', ''),
-            $request->get('allergens', []),
+            explode(',', $request->get('allergens', '')),
             $request->get('ean', ''),
             $request->get('brand', ''),
             $request->get('category', '')

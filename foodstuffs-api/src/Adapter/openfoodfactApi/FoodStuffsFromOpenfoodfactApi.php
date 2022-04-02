@@ -22,7 +22,7 @@ final class FoodStuffsFromOpenfoodfactApi implements FoodStuffsRepository
     {
         $foodStuffs = [];
 
-        $url = OpenfoodfactUrlFactory::generateUrl($ean, $allergens);
+        $url = OpenfoodfactUrlFactory::generateUrl($ean, $allergens, $brand, $category);
         $response = $this->httpClient->request('GET', $url);
 
         $productsResponse = (\json_decode($response->getContent(), true))['products'];

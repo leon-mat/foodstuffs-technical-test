@@ -40,5 +40,7 @@ final class FoodStuffsFromOpenfoodfactApiTest extends TestCase
         $this->assertGreaterThan(2, $foodstuffs);
     }
 
+    // @todo: have a test with many criteria and a test by criteria by checking what the fields contain (!!!contain and not equal)
+
     // @todo: add search a foodstuff by her name (not yet found in openfoodfact api)
 }
