@@ -21,6 +21,9 @@
         <testsuite name="Project Test Suite">
             <directory>src</directory>
         </testsuite>
+        <testsuite name="Controllers">
+            <directory>src/Controller</directory>
+        </testsuite>
     </testsuites>
 
     <!--coverage processUncoveredFiles="true">
