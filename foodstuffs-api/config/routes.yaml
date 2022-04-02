@@ -1,3 +1,7 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+search_foodstuffs:
+    path: /search/name
+    controller: App\Controller\ListFoodStuffsController::search
