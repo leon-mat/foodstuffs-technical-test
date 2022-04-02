@@ -37,12 +37,13 @@ final class ListFoodStuffsControllerTest extends WebTestCase
     /**
      * @test
      */
-    public function search_must_have_a_criteria_in_the_request()
+    public function search_must_have_a_search_criteria_in_the_request()
     {
         $controller = new ListFoodStuffsController(new FoodStuffsFixturesRepository());
 
-        $controller->search(new Request());
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('missing a search criteria');
 
-        $this->expectExceptionObject( new \InvalidArgumentException('missing a search criteria'));
+        $controller->search(new Request());
     }
 }
