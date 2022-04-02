@@ -6,6 +6,7 @@ use App\Domain\foodstuffs\FoodStuff;
 use App\Domain\foodstuffs\FoodStuffsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class ListFoodStuffsController extends AbstractController
@@ -20,7 +21,7 @@ class ListFoodStuffsController extends AbstractController
         $this->foodStuffsRepository = $foodStuffsRepository;
     }
 
-    public function search(): Response
+    public function search(Request $request): Response
     {
         $foodstuffs = $this->foodStuffsRepository->search('', [], '', '', '');
 
