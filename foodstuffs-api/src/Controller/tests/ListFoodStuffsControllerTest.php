@@ -25,9 +25,9 @@ final class ListFoodStuffsControllerTest extends WebTestCase
         $this->assertJsonStringEqualsJsonString(
             '
             [
-                {"ean":"7500000000125"},
-                {"ean":"7500000000127"},
-                {"ean":"7500000000282"}
+                {"allergens":"", "brand":"", "ean":"7500000000125", "ingredients": "tomate", "name":"Tomate", "nutriscore": "A"},
+                {"allergens":"", "brand":"", "ean":"7500000000127", "ingredients": "patate", "name":"Patate", "nutriscore": "A"},
+                {"allergens":"e25", "brand":"coca", "ean":"7500000000282", "ingredients": "sucre, eau, e25", "name":"Coca", "nutriscore": "E"}
             ]
             ',
             $content

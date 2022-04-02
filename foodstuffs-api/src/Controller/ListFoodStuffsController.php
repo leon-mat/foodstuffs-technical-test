@@ -47,9 +47,7 @@ class ListFoodStuffsController extends AbstractController
         $responseData = [];
 
         foreach ($foodstuffs as $foodstuff) {
-            $responseData[] = [
-                'ean' => $foodstuff->getEan()
-            ];
+            $responseData[] = $foodstuff->toArray();
         }
 
         return $responseData;

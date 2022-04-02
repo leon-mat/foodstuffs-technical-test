@@ -43,6 +43,18 @@ final class FoodStuff
         $this->nutriscore = $nutriscore;
     }
 
+    public function toArray(): array
+    {
+        return [
+            'ean' => $this->getEan(),
+            'name' => $this->getName(),
+            'brand' => $this->getBrand(),
+            'ingredients' => $this->getIngredients(),
+            'allergens' => $this->getAllergens(),
+            'nutriscore' => $this->getNutriscore()
+        ];
+    }
+
     public function getEan(): string
     {
         return $this->ean;
