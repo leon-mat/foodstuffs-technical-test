@@ -23,7 +23,14 @@ class ListFoodStuffsController extends AbstractController
 
     public function search(Request $request): Response
     {
-        $foodstuffs = $this->foodStuffsRepository->search('', [], '', '', '');
+        $this->validateRequest($request);
+        $foodstuffs = $this->foodStuffsRepository->search(
+            $request->get('name', ''),
+            $request->get('allergens', []),
+            $request->get('ean', ''),
+            $request->get('brand', ''),
+            $request->get('category', '')
+        );
 
         $responseData = $this->transformFoodStuffsToArray($foodstuffs);
 
@@ -46,5 +53,18 @@ class ListFoodStuffsController extends AbstractController
         }
 
         return $responseData;
+    }
+
+    private function validateRequest(Request $request)
+    {
+        if (
+            !$request->get('name')
+            && !$request->get('allergens')
+            && !$request->get('ean')
+            && !$request->get('brand')
+            && !$request->get('category')
+        ) {
+            throw new \InvalidArgumentException('missing a search criteria');
+        }
     }
 }
