@@ -38,6 +38,7 @@ final class WishlistOfFoodstuffsMariaDbRepository implements WishlistOfFoodstuff
 
     public function clear(): void
     {
-
+        $this->connection->executeQuery('DELETE FROM wishlist_of_foodstuffs');
+        $this->logger->info('a wishlist was clear to mariadb');
     }
 }
