@@ -1,7 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Domain\Wishlist\WishlistOfFoodstuffsRepository;
 use Doctrine\DBAL\Connection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -9,18 +11,18 @@ use Symfony\Component\HttpFoundation\Response;
 class WishlistOfFoodStuffsController extends AbstractController
 {
     /**
-     * @var Connection
+     * @var WishlistOfFoodstuffsRepository
      */
-    private $connection;
+    private $wishlistOfFoodstuffsRepository;
 
-    public function __construct(Connection $connection)
+    public function __construct(WishlistOfFoodstuffsRepository $wishlistOfFoodstuffsRepository)
     {
-        $this->connection = $connection;
+        $this->wishlistOfFoodstuffsRepository = $wishlistOfFoodstuffsRepository;
     }
 
     public function add(string $ean)
     {
-        $this->connection->executeQuery('INSERT INTO wishlist_of_foodstuffs (ean) VALUES (:ean);', ['ean' => $ean]);
+        $this->wishlistOfFoodstuffsRepository->addWish($ean);
 
         return new Response('', 200);
     }
