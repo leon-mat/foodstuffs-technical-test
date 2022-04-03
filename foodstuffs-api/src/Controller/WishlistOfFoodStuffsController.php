@@ -54,6 +54,6 @@ class WishlistOfFoodStuffsController extends AbstractController
 
     public function clear()
     {
-
+        $this->wishlistOfFoodstuffsRepository->clear();
     }
 }

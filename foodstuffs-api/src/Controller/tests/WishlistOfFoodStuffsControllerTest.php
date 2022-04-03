@@ -67,7 +67,7 @@ final class WishlistOfFoodStuffsControllerTest extends WebTestCase
         $this->connection->executeQuery("INSERT INTO wishlist_of_foodstuffs (ean) VALUES ('".rand(100,10000)."');");
         $this->connection->executeQuery("INSERT INTO wishlist_of_foodstuffs (ean) VALUES ('".rand(100,10000)."');");
 
-        $this->client->request('GET', "/clear/");
+        $this->client->request('GET', "/clear");
 
         $wishEan = $this->connection->fetchAllAssociative("SELECT * FROM wishlist_of_foodstuffs;");
 
