@@ -27,7 +27,8 @@ to access to api on your http://localhost url (if you already have a started web
 - create route /clear
 - add pagination to route /search/name
 - add field 'best_substitution' to foodstuff in the api response
-- JWT authentication
+- JWT authentication (and use it to wishlist and exclusions)
+- document the api responses
 - format of responses api follow json:api specs (https://jsonapi.org/examples/)
 - add an index and links to navigate in the api
 - custom 404

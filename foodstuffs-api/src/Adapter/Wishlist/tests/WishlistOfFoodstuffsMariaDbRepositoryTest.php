@@ -53,4 +53,22 @@ final class WishlistOfFoodstuffsMariaDbRepositoryTest extends WebTestCase
 
         $this->assertEmpty($wishEan);
     }
+
+    /**
+     * @test
+     * (it_can_clear_all_wishlist_to_a_user after add jwt)
+     */
+    public function it_can_clear_all_wishlist()
+    {
+        $repository = new WishlistOfFoodstuffsMariaDbRepository($this->connection, new NullLogger());
+        $this->connection->executeQuery("INSERT INTO wishlist_of_foodstuffs (ean) VALUES ('".rand(100,10000)."');");
+        $this->connection->executeQuery("INSERT INTO wishlist_of_foodstuffs (ean) VALUES ('".rand(100,10000)."');");
+        $this->connection->executeQuery("INSERT INTO wishlist_of_foodstuffs (ean) VALUES ('".rand(100,10000)."');");
+
+        $repository->clear();
+
+        $wishEan = $this->connection->fetchAllAssociative("SELECT * FROM wishlist_of_foodstuffs;");
+
+        $this->assertEmpty($wishEan);
+    }
 }

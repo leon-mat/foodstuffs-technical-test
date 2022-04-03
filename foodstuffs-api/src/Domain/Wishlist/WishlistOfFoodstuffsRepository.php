@@ -20,4 +20,9 @@ interface WishlistOfFoodstuffsRepository
      * @return void
      */
     function removeWish(string $ean): void;
+
+    /**
+     * @return void
+     */
+    function clear(): void;
 }

@@ -35,4 +35,9 @@ final class WishlistOfFoodstuffsMariaDbRepository implements WishlistOfFoodstuff
         $this->connection->executeQuery('DELETE FROM wishlist_of_foodstuffs WHERE ean LIKE :ean;', ['ean' => $ean]);
         $this->logger->info('a foodstuff wish was deleted to mariadb', ['ean' => $ean]);
     }
+
+    public function clear(): void
+    {
+
+    }
 }
