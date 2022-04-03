@@ -38,4 +38,9 @@ class WishlistOfFoodStuffsController extends AbstractController
 
         return new Response('', 200);
     }
+
+    public function delete(string $ean)
+    {
+
+    }
 }

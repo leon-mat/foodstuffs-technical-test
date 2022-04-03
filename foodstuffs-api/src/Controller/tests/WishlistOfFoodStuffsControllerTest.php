@@ -42,6 +42,21 @@ final class WishlistOfFoodStuffsControllerTest extends WebTestCase
         $this->assertEquals('7850000000455', $wish[0]);
     }
 
+    /**
+     * @test
+     */
+    public function it_can_delete_a_foodstuff_to_his_wishlist()
+    {
+        $ean = '7850000000455';
+        $this->connection->executeQuery("INSERT INTO wishlist_of_foodstuffs (ean) VALUES ('$ean');");
+
+        $this->client->request('GET', "/delete/$ean");
+
+        $wish = $this->connection->fetchFirstColumn("SELECT ean FROM wishlist_of_foodstuffs WHERE ean LIKE '$ean';");
+
+        $this->assertEmpty($wish);
+    }
+
     //@todo: refacto FoodStuffsFixturesRepository to up this test
     /**
      * @test
