@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+//@todo: add JWT to identify users
 class WishlistOfFoodStuffsController extends AbstractController
 {
     /**
@@ -49,5 +50,10 @@ class WishlistOfFoodStuffsController extends AbstractController
         $this->wishlistOfFoodstuffsRepository->removeWish($foodStuff->getEan());
 
         return new Response('', 200);
+    }
+
+    public function clear()
+    {
+
     }
 }
