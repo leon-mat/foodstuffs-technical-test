@@ -35,7 +35,7 @@ final class WishlistOfFoodstuffsMariaDbRepositoryTest extends WebTestCase
 
         $wish = $this->connection->fetchFirstColumn("SELECT ean FROM wishlist_of_foodstuffs WHERE ean LIKE '$ean';");
 
-        $this->assertNotFalse($wish, 'wish not found in db');
+        $this->assertNotEmpty($wish, 'wish not found in db');
         $this->assertEquals('9870000000723', $wish[0]);
     }
 }
