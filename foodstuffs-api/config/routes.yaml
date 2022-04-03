@@ -5,3 +5,7 @@
 search_foodstuffs:
     path: /search/name
     controller: App\Controller\ListFoodStuffsController::search
+
+add_to_wishlist_of_foodstuffs:
+    path: /add/{ean}
+    controller: App\Controller\WishlistOfFoodStuffsController::add
