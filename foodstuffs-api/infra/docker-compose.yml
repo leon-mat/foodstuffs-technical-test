@@ -19,7 +19,7 @@ services:
       image: mariadb:10.8.2-rc
       restart: always
       ports:
-        - '3306:3306'
+        - '3307:3306'
       environment:
         MYSQL_USER: user
         MYSQL_PASSWORD: myuserpassword
