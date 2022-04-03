@@ -23,7 +23,6 @@ to access to api on your http://localhost url (if you already have a started web
 - See the openfoodfact api documentation : https://openfoodfacts.github.io/api-documentation/ (principally chapters 3 and 5)
 
 # Backlog / todo
-- create route /save/ean_du_produit
 - create route /save/substitution/ean_du_produit
 - create route /exclude/ean_du_produit
 - create route /delete/ean_du_produit

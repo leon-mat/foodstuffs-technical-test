@@ -4,3 +4,9 @@ services:
         public: true
         calls:
             - [ setContainer, [ '@service_container' ]]
+
+    App\Controller\WishlistOfFoodStuffsController:
+        arguments: [ '@App\Adapter\Wishlist\WishlistOfFoodstuffsMariaDbRepository', '@App\Controller\tests\fixtures\FoodStuffsFixturesRepository' ]
+        public: true
+        calls:
+            - [ setContainer, [ '@service_container' ]]

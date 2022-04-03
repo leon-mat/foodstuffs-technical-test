@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller\tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 final class WishlistOfFoodStuffsControllerTest extends WebTestCase
 {
@@ -37,7 +38,19 @@ final class WishlistOfFoodStuffsControllerTest extends WebTestCase
 
         $wish = $this->connection->fetchFirstColumn("SELECT ean FROM wishlist_of_foodstuffs WHERE ean LIKE '$ean';");
 
-        $this->assertNotFalse($wish, 'wish not found in db');
         $this->assertEquals('7850000000455', $wish[0]);
     }
+
+    //@todo: refacto FoodStuffsFixturesRepository to up this test
+    /**
+     * @test
+     *
+    public function it_notify_a_not_found_foodstuff_to_add_it_in_wishlist()
+    {
+        $badEan = '9990009990005';
+
+        $this->expectException(NotFoundHttpException::class);
+
+        $this->client->request('GET', "/add/$badEan");
+    }*/
 }

@@ -14,4 +14,11 @@ interface FoodStuffsRepository
      * @return FoodStuff[]
      */
     public function search(string $name, array $allergens, string $ean, string $brand, string $category): array;
+
+    /**
+     * @param string $ean
+     *
+     * @return FoodStuff
+     */
+    public function getFoodStuffByEan(string $ean): FoodStuff;
 }
