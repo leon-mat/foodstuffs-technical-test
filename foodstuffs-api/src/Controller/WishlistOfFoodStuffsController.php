@@ -41,6 +41,13 @@ class WishlistOfFoodStuffsController extends AbstractController
 
     public function delete(string $ean)
     {
+        try {
+            $foodStuff = $this->foodStuffsRepository->getFoodStuffByEan($ean);
+        } catch (FoodStuffNotFound $e) {
+            throw new NotFoundHttpException('foodstuff not found', $e);
+        }
+        $this->wishlistOfFoodstuffsRepository->removeWish($foodStuff->getEan());
 
+        return new Response('', 200);
     }
 }
