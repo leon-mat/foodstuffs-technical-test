@@ -11,7 +11,6 @@ services:
         - ..:/app
       working_dir: /app
       entrypoint: bin/phpunit
-      command: './bin/console doctrine:migrations:execute last'
       depends_on:
         - mariadb_test
 
@@ -24,7 +23,7 @@ services:
       environment:
         MYSQL_USER: user
         MYSQL_PASSWORD: myuserpassword
-        MYSQL_DATABASE: foodstuffs_database_test
+        MYSQL_DATABASE: foodstuffs_database
         MYSQL_ROOT_PASSWORD: myrootpassword
 
     mariadb:
@@ -57,6 +56,9 @@ services:
         - '9000:9000'
       volumes:
         - ../:/var/www/foodstuffs-api
+      command: 'php-fpm'
+      depends_on:
+        - mariadb
 
     nginx:
       container_name: nginx
@@ -69,3 +71,13 @@ services:
       depends_on:
         - php
         - mariadb
+
+    db_migration:
+      container_name: db_migration
+      build:
+        context: .
+        dockerfile: ./php/Dockerfile
+      volumes:
+        - ..:/app
+      working_dir: /app
+      entrypoint: 'bin/console doctrine:migrations:migrate --no-interaction'

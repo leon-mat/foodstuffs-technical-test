@@ -15,7 +15,7 @@ final class WishlistOfFoodStuffsControllerTest extends WebTestCase
     {
         parent::setUp();
 
-        $this->connection = $this->getContainer()->get('doctrine.dbal.default_connection');
+        $this->connection = $this->getContainer()->get('Doctrine\DBAL\Connection');
         $this->connection->executeQuery('TRUNCATE TABLE wishlist_of_foodstuffs;');
     }
 
