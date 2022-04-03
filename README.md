@@ -24,7 +24,6 @@ to access to api on your http://localhost url (if you already have a started web
 
 # Backlog / todo
 - create route /save/substitution/ean_du_produit
-- create route /exclude/ean_du_produit
 - create route /delete/ean_du_produit
 - create route /clear
 - add pagination to route /search/name

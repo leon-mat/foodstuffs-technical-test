@@ -29,6 +29,13 @@ class ExclusionOfFoodStuffsController extends AbstractController
 
     public function exclude(string $ean)
     {
+        try {
+            $foodStuff = $this->foodStuffsRepository->getFoodStuffByEan($ean);
+        } catch (FoodStuffNotFound $e) {
+            throw new NotFoundHttpException('foodstuff not found', $e);
+        }
+        $this->exclusionOfFoodstuffsRepository->exclude($foodStuff->getEan());
 
+        return new Response('', 200);
     }
 }
