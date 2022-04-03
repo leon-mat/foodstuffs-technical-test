@@ -4,11 +4,28 @@ version: '3'
 services:
     phpunit:
       container_name: phpunit
-      image: php:8.1.4-cli
+      build:
+        context: .
+        dockerfile: ./php/Dockerfile
       volumes:
         - ..:/app
       working_dir: /app
       entrypoint: bin/phpunit
+      command: './bin/console doctrine:migrations:execute last'
+      depends_on:
+        - mariadb_test
+
+    mariadb_test:
+      container_name: mariadb_test
+      image: mariadb:10.8.2-rc
+      restart: always
+      ports:
+        - '3306:3306'
+      environment:
+        MYSQL_USER: user
+        MYSQL_PASSWORD: myuserpassword
+        MYSQL_DATABASE: foodstuffs_database_test
+        MYSQL_ROOT_PASSWORD: myrootpassword
 
     mariadb:
       container_name: mariadb
@@ -22,17 +39,20 @@ services:
         MYSQL_DATABASE: foodstuffs_database
         MYSQL_ROOT_PASSWORD: myrootpassword
 
+    # docker-compose run mariadb_client
     mariadb_client:
       container_name: mariadb_client
       image: mariadb:10.8.2-rc
       restart: 'no'
       command: 'mysql -hmariadb -uuser -pmyuserpassword foodstuffs_database'
       depends_on:
-        - madiadb
+        - mariadb
 
     php:
       container_name: php
-      image: php:8.1.4-fpm
+      build:
+        context: .
+        dockerfile: ./php/Dockerfile
       ports:
         - '9000:9000'
       volumes:
@@ -48,4 +68,4 @@ services:
         - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
       depends_on:
         - php
-        - madiadb
+        - mariadb
