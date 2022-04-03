@@ -29,4 +29,9 @@ final class WishlistOfFoodstuffsMariaDbRepository implements WishlistOfFoodstuff
         $this->connection->executeQuery('INSERT INTO wishlist_of_foodstuffs (ean) VALUES (:ean);', ['ean' => $ean]);
         $this->logger->info('a foodstuff wish was added to mariadb', ['ean' => $ean]);
     }
+
+    function removeWish(string $ean): void
+    {
+
+    }
 }
