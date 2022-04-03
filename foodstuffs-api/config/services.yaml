@@ -25,3 +25,6 @@ services:
 
     App\Controller\WishlistOfFoodStuffsController:
         arguments: [ '@App\Adapter\Wishlist\WishlistOfFoodstuffsMariaDbRepository', '@App\Adapter\openfoodfactApi\FoodStuffsFromOpenfoodfactApi' ]
+
+    App\Controller\ExclusionOfFoodStuffsController:
+        arguments: [ '@App\Adapter\ExclusionOfFoodStuffs\ExclusionOfFoodstuffsMariaDbRepository', '@App\Adapter\openfoodfactApi\FoodStuffsFromOpenfoodfactApi' ]

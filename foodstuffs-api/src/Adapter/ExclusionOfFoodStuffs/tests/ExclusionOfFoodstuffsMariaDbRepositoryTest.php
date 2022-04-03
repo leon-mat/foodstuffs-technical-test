@@ -19,7 +19,7 @@ final class ExclusionOfFoodstuffsMariaDbRepositoryTest extends WebTestCase
         parent::setUp();
 
         $this->connection = $this->getContainer()->get('Doctrine\DBAL\Connection');
-        $this->connection->executeQuery('TRUNCATE TABLE excluded_foodstuffsx;');
+        $this->connection->executeQuery('TRUNCATE TABLE excluded_foodstuffs;');
     }
 
     /**
@@ -32,9 +32,9 @@ final class ExclusionOfFoodstuffsMariaDbRepositoryTest extends WebTestCase
 
         $repository->exclude($ean);
 
-        $wish = $this->connection->fetchFirstColumn("SELECT ean FROM excluded_foodstuffs WHERE ean LIKE '$ean';");
+        $excluded = $this->connection->fetchFirstColumn("SELECT ean FROM excluded_foodstuffs WHERE ean LIKE '$ean';");
 
-        $this->assertNotEmpty($wish, 'wish not found in db');
-        $this->assertEquals('9870000000766', $wish[0]);
+        $this->assertNotEmpty($excluded, 'excluded not found in db');
+        $this->assertEquals('9870000000766', $excluded[0]);
     }
 }

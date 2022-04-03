@@ -10,3 +10,9 @@ services:
         public: true
         calls:
             - [ setContainer, [ '@service_container' ]]
+
+    App\Controller\ExclusionOfFoodStuffsController:
+        arguments: [ '@App\Adapter\ExclusionOfFoodStuffs\ExclusionOfFoodstuffsMariaDbRepository', '@App\Controller\tests\fixtures\FoodStuffsFixturesRepository' ]
+        public: true
+        calls:
+            - [ setContainer, [ '@service_container' ]]

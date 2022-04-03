@@ -9,3 +9,7 @@ search_foodstuffs:
 add_to_wishlist_of_foodstuffs:
     path: /add/{ean}
     controller: App\Controller\WishlistOfFoodStuffsController::add
+
+exclude_a_foodstuffs:
+    path: /exclude/{ean}
+    controller: App\Controller\ExclusionOfFoodStuffsController::exclude

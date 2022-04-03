@@ -38,6 +38,7 @@ final class WishlistOfFoodStuffsControllerTest extends WebTestCase
 
         $wish = $this->connection->fetchFirstColumn("SELECT ean FROM wishlist_of_foodstuffs WHERE ean LIKE '$ean';");
 
+        $this->assertNotEmpty($wish);
         $this->assertEquals('7850000000455', $wish[0]);
     }
 
